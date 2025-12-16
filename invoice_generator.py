@@ -22,14 +22,14 @@ def create_invoice(customer, items, output_path):
     c = canvas.Canvas(output_path, pagesize=A4)
     width, height = A4
 
-    # ✅ Logo rechtsboven
+    #  Logo rechtsboven
     draw_logo(c, width, height)
 
-    # ✅ Titel
+    #  Titel
     c.setFont("Helvetica-Bold", 22)
     c.drawString(50, height - 100, "FACTUUR")
 
-    # ✅ Info
+    # Info
     c.setFont("Helvetica", 11)
     c.drawString(50, height - 130, f"Klant: {customer}")
     c.drawString(50, height - 150, f"Datum: {datetime.now().strftime('%d-%m-%Y')}")
@@ -37,7 +37,7 @@ def create_invoice(customer, items, output_path):
 
     c.line(50, height - 185, width - 50, height - 185)
 
-    # ✅ Items in tabel
+    # Items in tabel
     y = height - 220
     total = 0
 
@@ -67,7 +67,7 @@ def create_invoice(customer, items, output_path):
     c.line(width - 200, y, width - 50, y)
     y -= 15
 
-    # ✅ Totals
+    #  Totals
     btw = total * 0.21
     c.setFont("Helvetica-Bold", 11)
     c.drawString(width - 200, y, "Subtotaal:")
@@ -79,7 +79,7 @@ def create_invoice(customer, items, output_path):
     c.drawString(width - 200, y, "Totaal:")
     c.drawString(width - 100, y, f"€{total + btw:.2f}")
 
-    # ✅ Digitale ondertekeningssectie
+    #  Digitale ondertekeningssectie
     y_sign = 140
     c.setLineWidth(0.8)
     c.line(width / 2 - 180, y_sign, width / 2 - 20, y_sign)
@@ -87,7 +87,7 @@ def create_invoice(customer, items, output_path):
     c.line(width / 2 + 20, y_sign, width / 2 + 180, y_sign)
     c.drawCentredString(width / 2 + 100, y_sign - 15, "Namens klant")
 
-    # ✅ Footer
+    #  Footer
     c.setFont("Helvetica-Oblique", 9)
     c.drawCentredString(width / 2, 60,
                         "Dit document is automatisch gegenereerd en heeft geen handtekening nodig.")
