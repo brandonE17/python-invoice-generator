@@ -95,15 +95,34 @@ def draw_logo(c, width, height, logo_width=80, top_offset=180):
         c.drawString(width - 200, y, "Totaal:")
         c.drawString(width - 100, y, f"€{total:.2f}")
 
+
     def draw_signature_section(c, width):
 
         y_sign = 140
         c.setLineWidth(0.8)
         c.line(width / 2 - 180, y_sign, width / 2 - 20, y_sign)
         c.drawCentredString(width / 2 - 100, y_sign - 15, "Namens bedrijf")
-        
+
         c.line(width / 2 + 20, y_sign, width / 2 + 180, y_sign)
         c.drawCentredString(width / 2 + 100, y_sign - 15, "Namens klant")   
+
+
+def draw_footer(c, width):
+    """
+    Draws footer text.
+    """
+    c.setFont("Helvetica-Oblique", 9)
+    c.drawCentredString(
+        width / 2,
+        60,
+        "Dit document is automatisch gegenereerd en heeft geen handtekening nodig."
+    )
+    c.drawCentredString(
+        width / 2,
+        45,
+        f"Automatisch gegenereerd namens {COMPANY_NAME} – {COMPANY_SIGNATORY}"
+    ) 
+
 
 def create_invoice(customer, items, output_path):
     c = canvas.Canvas(output_path, pagesize=A4)
