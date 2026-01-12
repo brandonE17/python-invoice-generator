@@ -95,6 +95,15 @@ def draw_logo(c, width, height, logo_width=80, top_offset=180):
         c.drawString(width - 200, y, "Totaal:")
         c.drawString(width - 100, y, f"€{total:.2f}")
 
+    def draw_signature_section(c, width):
+
+        y_sign = 140
+        c.setLineWidth(0.8)
+        c.line(width / 2 - 180, y_sign, width / 2 - 20, y_sign)
+        c.drawCentredString(width / 2 - 100, y_sign - 15, "Namens bedrijf")
+
+        c.line(width / 2 + 20, y_sign, width / 2 + 180, y_sign)
+        c.drawCentredString(width / 2 + 100, y_sign - 15, "Namens klant")   
 
 
 def draw_footer(c, width):
