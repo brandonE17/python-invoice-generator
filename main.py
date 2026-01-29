@@ -34,8 +34,27 @@ if customer_arg:
     if customer_arg in customers:
         customer = customer_arg
     else:
-        print(f"⚠️ Klant '{customer_arg}' niet gevonden in {customers_file}; gebruik standaard '{default_customer}'.")
-        customer = default_customer
+        print(f"⚠️ Klant '{customer_arg}' niet gevonden in {customers_file}.")
+        print("Beschikbare klanten:")
+        names = list(customers.keys())
+        for idx, name in enumerate(names, 1):
+            print(f"{idx}. {name}")
+        try:
+            choice = input(f"Kies een klantnummer (1-{len(names)}) of druk Enter om '{default_customer}' te gebruiken: ").strip()
+        except EOFError:
+            choice = ""
+        if choice.isdigit():
+            i = int(choice)
+            if 1 <= i <= len(names):
+                customer = names[i-1]
+            else:
+                print(f"Onbekende keuze, gebruik standaard '{default_customer}'.")
+                customer = default_customer
+        elif choice == "":
+            customer = default_customer
+        else:
+            print(f"Ongeldige invoer, gebruik standaard '{default_customer}'.")
+            customer = default_customer
 else:
     customer = default_customer
 
